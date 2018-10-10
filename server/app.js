@@ -1,24 +1,21 @@
+var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
-var index = require('./routes/index');
 var ejs=require('ejs')
+
+var indexRouter = require('./routes/index');
+
 
 var app = express();
 
-//ejs=>html
-app.engine('html',ejs.renderFile);
-app.set('views',path.join(__dirname,'./client/dist'));  //html文件加载路径
-app.set('view engine','html');
-app.use(express.static(path.join(__dirname,'./client/dist')));  //css、js之类文件加载路径
-
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.engine('html',ejs.renderFile); //ejs=>html
+app.set('views',path.join(__dirname,'../client/views'));  //html文件加载路径
+app.set('view engine','html');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -26,15 +23,13 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname,'../client/views')));  //css、js之类文件加载路径
 
-app.use('/', index);
+app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+  next(createError(404));
 });
 
 // error handler
