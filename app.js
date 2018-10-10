@@ -6,9 +6,15 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
+var ejs=require('ejs')
 
 var app = express();
+
+//ejs=>html
+app.engine('html',ejs.renderFile);
+app.set('views',path.join(__dirname,'./client/dist'));  //html文件加载路径
+app.set('view engine','html');
+app.use(express.static(path.join(__dirname,'./client/dist')));  //css、js之类文件加载路径
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -23,7 +29,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
