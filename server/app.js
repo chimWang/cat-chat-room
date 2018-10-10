@@ -14,7 +14,7 @@ var app = express();
 
 // view engine setup
 app.engine('html',ejs.renderFile); //ejs=>html
-app.set('views',path.join(__dirname,'../client/views'));  //html文件加载路径
+app.set('views',path.join(__dirname,'../client/dist'));  //html文件加载路径
 app.set('view engine','html');
 
 // uncomment after placing your favicon in /public
@@ -23,7 +23,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname,'../client/views')));  //css、js之类文件加载路径
+app.use(express.static(path.join(__dirname,'../client/dist')));  //css、js之类文件加载路径
 
 app.use('/', indexRouter);
 
