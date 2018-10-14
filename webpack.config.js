@@ -10,6 +10,10 @@ module.exports = {
         filename:'bundle.js',    //打包后的文件名
     },
 
+    resolve:{
+        extensions:['.js','.jsx','.json']
+    },
+
     module :{
         loaders : [{
             test :/(\.jsx|\.js)$/,
@@ -35,6 +39,7 @@ module.exports = {
 　　　　 }
         ]
     },
+
 
     plugins: [
         //根据index.html作为模板,打包的时候自动生成html并引入打包的js文件
