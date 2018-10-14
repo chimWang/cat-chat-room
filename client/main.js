@@ -1,7 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+import APP from './APP.jsx'
+
 ReactDOM.render(
-    <h1>hello world!</h1>,
+    <APP />,
     document.getElementById('app')
 )
