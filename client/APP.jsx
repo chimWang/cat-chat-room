@@ -1,9 +1,10 @@
 import React from 'react'
+import './App.less'
 
-const APP=()=>{
+const App=()=>{
     return(
-        <div>great</div>
+        <div className='bg'>great!!!!</div>
     )
 }
 
-export default APP
+export default App
