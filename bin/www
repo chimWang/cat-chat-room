@@ -25,6 +25,13 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
+//websocket
+var io = require('socket.io').listen(server);
+io.sockets.on('connection',function(socket){
+
+})
+
+
 server.listen(port,()=>{
   console.log(`server on port:${port}`)
 });
