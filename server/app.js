@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 var ejs=require('ejs')
 
 var indexRouter = require('./routes/index');
-
+var signin = require('./routes/signin')
 
 var app = express();
 
@@ -26,6 +26,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname,'../client/dist')));  //css、js之类文件加载路径
 
 app.use('/', indexRouter);
+app.use('/signin', signin);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
