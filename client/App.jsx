@@ -3,8 +3,6 @@ import Main from './modules/main/Main'
 import Login from './modules/main/login/Login'
 import './theme/index.less'
 import './App.less'
-import { userInfo } from 'os';
-
 
 class App extends Component {
     constructor(props) {

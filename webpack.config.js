@@ -4,6 +4,8 @@ var path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+
+
     entry: __dirname + '/client/main',    //入口文件 
     output: {
         path: path.join(__dirname + '/client/dist'),   //打包后存放位置
@@ -13,7 +15,7 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.jsx', '.json'],
         alias: {
-            '@':  path.resolve(__dirname,'client'),
+            '@': path.resolve(__dirname, 'client'),
         },
     },
 
@@ -37,8 +39,8 @@ module.exports = {
             loader: 'style-loader!css-loader!less-loader'
         },
         {
-            　　　　　　test: /\.(png|jpg)$/,
-            　　　　　　loader: 'url-loader?limit=8192'// limit 字段代表图片打包限制
+            test: /\.(png|jpg)$/,
+            loader: 'url-loader?limit=8192'// limit 字段代表图片打包限制
         }
         ]
     },
