@@ -10,6 +10,9 @@ class Input extends Component {
         }
 
     }
+    getValue() {
+        return this.state.value.trim();
+    }
     handleInput(e) {
         this.setState({
             value: e.target.value

@@ -16,7 +16,7 @@ class App extends Component {
 
     componentDidMount() {
         const storage = window.localStorage;
-        storage.removeItem('userinfo')
+        storage.removeItem('userInfo')
         if (!storage) {
             alert('该浏览器不支持localstorage')
         } else {
@@ -29,13 +29,22 @@ class App extends Component {
         }
     }
 
+    getUserInfo(info) {
+        const storage = window.localStorage;
+        console.log(info)
+        this.setState({
+            loginInfo: false
+        })
+        storage['userInfo'] = JSON.stringify(info)
+    }
+
     render() {
         const { loginInfo } = this.state
 
         return (
             <div>
                 <Main />
-                {loginInfo ? <Login /> : null}
+                {loginInfo ? <Login userInfo={(info) => this.getUserInfo(info)} /> : null}
             </div>
 
         )
