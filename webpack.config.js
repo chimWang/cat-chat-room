@@ -39,7 +39,7 @@ module.exports = {
             loader: 'style-loader!css-loader!less-loader'
         },
         {
-            test: /\.(png|jpg)$/,
+            test: /\.(png|jpg|svg)$/,
             loader: 'url-loader?limit=8192'// limit 字段代表图片打包限制
         }
         ]

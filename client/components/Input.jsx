@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import propTypes from 'prop-types'
+import './components.less'
 
 class Input extends Component {
     constructor(props) {
@@ -18,16 +19,17 @@ class Input extends Component {
         const { placeholder, label } = this.props
         const { value } = this.state
         return (
-            <div>
-                <label>{label}</label>
-                <input
-                    value={value}
-                    onInput={(e) => { this.handleInput(e) }}
-                    onChange={(e) => { this.handleInput(e) }}
-                    ref={i => this.input = i}
-                    placeholder={placeholder}
-                />
-                <button>确定</button>
+            <div className="component-input">
+                <div><label>{label}：</label></div>
+                <div>
+                    <input
+                        value={value}
+                        onInput={(e) => { this.handleInput(e) }}
+                        onChange={(e) => { this.handleInput(e) }}
+                        ref={i => this.input = i}
+                        placeholder={placeholder}
+                    />
+                </div>
             </div>
         )
     }
