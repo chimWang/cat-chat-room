@@ -7,43 +7,61 @@ class Login extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            avatar: ['./avatar1.svg', './avatar2.svg', './avatar3.svg', './avatar4.svg']
+            avatar: [
+                {
+                    imgUrl: './avatar1.svg',
+                    avatarValue: 1
+                },
+                {
+                    imgUrl: './avatar2.svg',
+                    avatarValue: 2
+                },
+                {
+                    imgUrl: './avatar3.svg',
+                    avatarValue: 3
+                },
+                {
+                    imgUrl: './avatar4.svg',
+                    avatarValue: 4
+                }
+            ],
+            nowIndex: 0
         }
     }
 
-    chooseAvatar() {
+    chooseAvatar(index) {
         this.setState({
-
+            nowIndex: index
         })
     }
 
     render() {
-        const { avatar, avatarBorder } = this.state
+        const { avatar, nowIndex } = this.state
         return (
             <div className='login'>
                 <header>登录</header>
-                <div className="login-info">
-                    <Input placeholder="输入名称" label="名称" />
-                </div>
-                <div className="avatar">
-                    <p>选择头像</p>
-                    <div>
-                        {avatar.map((item, index) => {
-                            return (
-                                <a
-                                    href="javascript:;"
-                                    key={index}>
-                                    <img src={item}
-                                        onClick={() => this.chooseAvatar()}
+                <div className="center">
+                    <div className="login-info">
+                        <Input placeholder="输入名称" label="名称" />
+                    </div>
+                    <div className="avatar">
+                        <p>选择头像</p>
+                        <div>
+                            {avatar.map((item, index) => {
+                                return (
+                                    <img src={item.imgUrl}
+                                        key={index}
+                                        style={index === nowIndex ? { border: '2px solid #666' } : null}
+                                        onClick={() => this.chooseAvatar(index)}
                                     />
-                                </a>
-                            )
-                        })}
-
+                                )
+                            })}
+                        </div>
+                    </div>
+                    <div className="loginBtn">
+                        <button>登录</button>
                     </div>
                 </div>
-
-
             </div>
         )
     }
