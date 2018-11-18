@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Main from './modules/main/Main'
-import Login from './modules/main/login/Login'
+import Login from './modules/login/Login'
 import './theme/index.less'
 import './App.less'
 
