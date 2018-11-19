@@ -21,6 +21,10 @@ socket.on('disconnect', function () {
 class ChatPanel extends Component {
     componentDidMount() {
         document.addEventListener('keydown', (e) => this.onEnter(e))
+        socket.on('getMessage',function(userInfo,message){
+            console.log(message)
+            console.log('okokok')
+        })
     }
     clickBtn() {
         const { userInfo } = this.props

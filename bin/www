@@ -31,7 +31,8 @@ io.on('connection', function (socket) {
     }
     console.log(userInfo)
     console.log(msg)
-    socket.broadcast.emit('getMessage', userInfo, msg) //发送给除自己以外订阅了getMessage的人
+    // socket.broadcast.emit('getMessage', userInfo, msg) //发送给除自己以外订阅了getMessage的人
+    io.sockets.emit('getMessage', userInfo, msg);//发送给所有人
   })
 })
 /**
