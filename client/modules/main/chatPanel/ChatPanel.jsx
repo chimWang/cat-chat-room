@@ -1,10 +1,26 @@
 import React, { Component } from 'react'
 import './ChatPanel.less'
 import Input from '@/components/Input'
+import IO from 'socket.io-client';
+const socket = new IO("http://localhost:3000");
+
+socket.on('connect', function () {
+    console.log("与服务器连接");
+});
+
+socket.on('error', function () {
+    console.log("发生错误");
+});
+
+
+socket.on('disconnect', function () {
+    console.log("与服务器断开");
+});
+
 
 class ChatPanel extends Component {
     componentDidMount() {
-        document.addEventListener('keydown', this.onEnter)
+        document.addEventListener('keydown', (e) => this.onEnter(e))
     }
     clickBtn() {
         const { userInfo } = this.props
@@ -13,16 +29,26 @@ class ChatPanel extends Component {
     }
 
     onEnter(e) {
-        let that = this
-        const { userInfo } = that.props
-        let message = that.message.getValue()
+        const { userInfo } = this.props
+        let message = this.message.getValue()
         if (e.keyCode === 13) {
-            that.sendMessage(userInfo, message)
+            this.sendMessage(userInfo, message)
         }
     }
 
-    sendMessage() {
-
+    sendMessage(userInfo, message) {
+        if (message) {
+            socket.emit('sendMessage', userInfo, message, (code) => {
+                if (code === 200) {
+                    console.log('成功')
+                    this.message.clearValue()
+                } else {
+                    console.log('失败')
+                }
+            })
+        } else {
+            alert('输入消息不能为空')
+        }
     }
 
     render() {

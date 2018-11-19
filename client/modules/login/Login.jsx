@@ -33,7 +33,7 @@ class Login extends Component {
     chooseAvatar(item, index) {
         this.setState({
             nowIndex: index,
-            chooseAvatar: item.avatarValue,
+            chooseAvatar: item.imgUrl,
         })
     }
 

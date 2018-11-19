@@ -31,11 +31,13 @@ class App extends Component {
 
     getUserInfo(info) {
         const storage = window.localStorage;
+        storage['userInfo'] = JSON.stringify(info)
         console.log(info)
         this.setState({
+            userInfo: JSON.parse(storage['userInfo']),
             loginInfo: false
         })
-        storage['userInfo'] = JSON.stringify(info)
+
     }
 
     render() {
@@ -43,7 +45,7 @@ class App extends Component {
 
         return (
             <div>
-                <Main userInfo={this.userInfo}/>
+                <Main userInfo={this.state.userInfo}/>
                 {loginInfo ? <Login userInfo={(info) => this.getUserInfo(info)} /> : null}
             </div>
 

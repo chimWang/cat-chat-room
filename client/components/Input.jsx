@@ -13,6 +13,11 @@ class Input extends Component {
     getValue() {
         return this.state.value.trim();
     }
+    clearValue() {
+        this.setState({
+            value: ''
+        })
+    }
     handleInput(e) {
         this.setState({
             value: e.target.value

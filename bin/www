@@ -23,7 +23,12 @@ var server = http.createServer(app);
 
 var io = require('socket.io')(server)
 io.on('connection', function (socket) {
-  socket.on('sendMessage', function (userInfo, msg) {
+  socket.on('sendMessage', function (userInfo, msg, cb) {
+    if(userInfo){
+      cb(200)
+    }else{
+      cb(400)
+    }
     console.log(userInfo)
     console.log(msg)
     socket.broadcast.emit('getMessage', userInfo, msg) //发送给除自己以外订阅了getMessage的人
@@ -32,12 +37,6 @@ io.on('connection', function (socket) {
 /**
  * Listen on provided port, on all network interfaces.
  */
-
-//websocket
-var io = require('socket.io').listen(server);
-io.sockets.on('connection', function (socket) {
-
-})
 
 
 server.listen(port, () => {
