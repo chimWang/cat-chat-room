@@ -21,18 +21,26 @@ app.set('port', port);
 
 var server = http.createServer(app);
 
+var io = require('socket.io')(server)
+io.on('connection', function (socket) {
+  socket.on('sendMessage', function (userInfo, msg) {
+    console.log(userInfo)
+    console.log(msg)
+    socket.broadcast.emit('getMessage', userInfo, msg) //发送给除自己以外订阅了getMessage的人
+  })
+})
 /**
  * Listen on provided port, on all network interfaces.
  */
 
 //websocket
 var io = require('socket.io').listen(server);
-io.sockets.on('connection',function(socket){
+io.sockets.on('connection', function (socket) {
 
 })
 
 
-server.listen(port,()=>{
+server.listen(port, () => {
   console.log(`server on port:${port}`)
 });
 server.on('error', onError);

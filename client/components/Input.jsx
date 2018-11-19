@@ -23,7 +23,7 @@ class Input extends Component {
         const { value } = this.state
         return (
             <div className="component-input">
-                <div><label>{label}：</label></div>
+                <div><label>{label}</label></div>
                 <div>
                     <input
                         value={value}
