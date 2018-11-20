@@ -56,28 +56,31 @@ class Login extends Component {
     render() {
         const { avatar, nowIndex } = this.state
         return (
-            <div className='login'>
-                <header>登录</header>
-                <div className="center" style={{ width: '80%' }}>
-                    <div className="login-info">
-                        <Input placeholder="输入名称" label="名称" ref={i => this.username = i} />
-                    </div>
-                    <div className="avatar">
-                        <p>选择头像：</p>
-                        <div>
-                            {avatar.map((item, index) => {
-                                return (
-                                    <img src={item.imgUrl}
-                                        key={index}
-                                        style={index === nowIndex ? { border: '2px solid #feb9f8' } : null}
-                                        onClick={() => this.chooseAvatar(item, index)}
-                                    />
-                                )
-                            })}
+            <div>
+                <div className="mask"></div>
+                <div className='login'>
+                    <header>登录</header>
+                    <div className="center" style={{ width: '80%' }}>
+                        <div className="login-info">
+                            <Input placeholder="输入名称" label="名称：" ref={i => this.username = i} />
                         </div>
-                    </div>
-                    <div className="loginBtn">
-                        <button onClick={() => this.handleLogin()}>确定</button>
+                        <div className="avatar">
+                            <p>选择头像：</p>
+                            <div>
+                                {avatar.map((item, index) => {
+                                    return (
+                                        <img src={item.imgUrl}
+                                            key={index}
+                                            style={index === nowIndex ? { border: '2px solid #feb9f8' } : null}
+                                            onClick={() => this.chooseAvatar(item, index)}
+                                        />
+                                    )
+                                })}
+                            </div>
+                        </div>
+                        <div className="loginBtn">
+                            <button onClick={() => this.handleLogin()}>确定</button>
+                        </div>
                     </div>
                 </div>
             </div>

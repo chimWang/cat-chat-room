@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import './ChatPanel.less'
 import Input from '@/components/Input'
+import MessageList from './chat/MessageList'
+
 import IO from 'socket.io-client';
 const socket = new IO("http://localhost:3000");
 
@@ -21,10 +23,6 @@ socket.on('disconnect', function () {
 class ChatPanel extends Component {
     componentDidMount() {
         document.addEventListener('keydown', (e) => this.onEnter(e))
-        socket.on('getMessage',function(userInfo,message){
-            console.log(message)
-            console.log('okokok')
-        })
     }
     clickBtn() {
         const { userInfo } = this.props
@@ -60,9 +58,10 @@ class ChatPanel extends Component {
             <div className="chatpanel">
                 <header>chatroom</header>
                 <div className="content">
+                    <MessageList />
                 </div>
                 <footer>
-                    <Input placeholder="来吐槽一下~" ref={i => this.message = i} />
+                    <Input placeholder="来吐槽一下吧~" ref={i => this.message = i} />
                     <button onClick={() => this.clickBtn()}>发送</button>
                 </footer>
             </div>
