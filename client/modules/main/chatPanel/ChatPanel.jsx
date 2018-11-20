@@ -54,11 +54,12 @@ class ChatPanel extends Component {
     }
 
     render() {
+        const { userInfo } = this.props
         return (
             <div className="chatpanel">
                 <header>chatroom</header>
                 <div className="content">
-                    <MessageList />
+                    <MessageList ioUserInfo={userInfo} />
                 </div>
                 <footer>
                     <Input placeholder="来吐槽一下吧~" ref={i => this.message = i} />

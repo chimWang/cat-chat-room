@@ -7,38 +7,50 @@ class MessageList extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            messageList: []
+            messageList: [],
+            nowIndex: -1
         }
     }
 
-    componentDidMount() {
+    componentWillReceiveProps(props) {
         const { messageList } = this.state
+        const { ioUserInfo } = props
         socket.on('getMessage', (userInfo, message) => {
             let messageInfo = {}
             messageInfo.content = message
             messageInfo.avatar = userInfo.chooseAvatar
             messageInfo.username = userInfo.username
+            messageInfo.userId = userInfo.userId
             messageList.push(messageInfo)
             this.setState({
                 messageList
             })
+            let nowIndex = messageList.findIndex(item => {
+                return item.userId === userInfo.userId
+            })
+            if (userInfo.userId !== ioUserInfo.userId) {
+                this.setState({
+                    nowIndex
+                })
+            }
         })
     }
     render() {
-        const { messageList } = this.state
+        const { messageList, nowIndex } = this.state
+
         return (
             <div>
                 <ul>
                     {
                         messageList.map((item, index) => {
                             return (
-                                <li key={index} className='dialogue'>
+                                <li key={index} className={index === nowIndex ? 'dialogue' : 'dialogue right'}>
                                     <div className='avatar'>
                                         <p> {item.username}</p>
                                         <img src={item.avatar} />
                                     </div>
                                     <div className='text'>
-                                        {item.content}
+                                        <p>{item.content}</p>
                                     </div>
                                 </li>
                             )

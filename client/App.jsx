@@ -16,7 +16,7 @@ class App extends Component {
 
     componentDidMount() {
         const storage = window.localStorage;
-        // storage.removeItem('userInfo')
+        storage.removeItem('userInfo')
         if (!storage) {
             alert('该浏览器不支持localstorage')
         } else {
