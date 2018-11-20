@@ -8,7 +8,6 @@ class MessageList extends Component {
         super(props)
         this.state = {
             messageList: [],
-            nowIndex: -1
         }
     }
 
@@ -22,17 +21,15 @@ class MessageList extends Component {
             messageInfo.username = userInfo.username
             messageInfo.userId = userInfo.userId
             messageList.push(messageInfo)
+            messageList.forEach(item => {
+                if (item.userId === ioUserInfo.userId) {
+                    item.myMsg = true
+                }
+            })
             this.setState({
                 messageList
             })
-            let nowIndex = messageList.findIndex(item => {
-                return item.userId === userInfo.userId
-            })
-            if (userInfo.userId !== ioUserInfo.userId) {
-                this.setState({
-                    nowIndex
-                })
-            }
+
         })
     }
     render() {
@@ -44,7 +41,7 @@ class MessageList extends Component {
                     {
                         messageList.map((item, index) => {
                             return (
-                                <li key={index} className={index === nowIndex ? 'dialogue' : 'dialogue right'}>
+                                <li key={index} className={item.myMsg ? 'dialogue right' : 'dialogue'}>
                                     <div className='avatar'>
                                         <p> {item.username}</p>
                                         <img src={item.avatar} />
