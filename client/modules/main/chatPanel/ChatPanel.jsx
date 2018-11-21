@@ -62,7 +62,7 @@ class ChatPanel extends Component {
                     <MessageList ioUserInfo={userInfo} />
                 </div>
                 <footer>
-                    <Input placeholder="来吐槽一下吧~" ref={i => this.message = i} />
+                    <Input placeholder="来吐槽一下吧~" ref={i => this.message = i}/>
                     <button onClick={() => this.clickBtn()}>发送</button>
                 </footer>
             </div>

@@ -1,47 +1,57 @@
 .dialogue{
-    width: 30%;
-    height: 62px;
+    width: 100%;
     display: flex;
+    justify-content: flex-start;
     margin-bottom: 20px;
-    .avatar{
-        img{
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            border: 1px solid #feb9f8;
-            background: #feb9f8;
-            padding: 5px;
-        }
-        p{
-            text-align: center;
-            font-size:12px;
-            height: 20px;
-            line-height: 20px;
-            margin: 0;
-            padding: 0;
-        }
-    }
-    .text{
-        margin-left: 10px;
+    .dialogue-main{
+        width: 48%;
         display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        p{
-            margin: 0;
-            border-radius: 5px;
-            background: #fff; 
-            height: 35px;
-            line-height: 35px;
-            padding:0 10px;
+        flex-direction: row;
+        justify-content: flex-start;
+        .avatar{
+            img{
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                border: 1px solid #feb9f8;
+                background: #feb9f8;
+                padding: 10px;
+            }
+        }
+        .text{
+            margin-left: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            p:first-child{
+                font-size:10px;
+                height: 20px;
+                line-height: 20px;
+                margin: 0;
+                padding: 0;
+            }
+            p:last-child{
+                margin: 0;
+                font-size:14px;
+                border-radius: 5px;
+                background: #fff; 
+                padding: 6px 10px;
+            }
         }
     }
 }
-
 .right{
-    flex-direction: row-reverse;
-    width: 100% !important;
-    justify-content: flex-start;
+    justify-content: flex-end;
+    .dialogue-main{
+        width: 48%;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-start;
+    }
     .text{
         margin-right: 10px;
+        p:first-child{
+            text-align: right
+        }
     }
 }

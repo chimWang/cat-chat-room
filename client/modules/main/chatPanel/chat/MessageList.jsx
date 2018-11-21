@@ -29,7 +29,7 @@ class MessageList extends Component {
             this.setState({
                 messageList
             })
-
+            document.querySelector('#msg_end').scrollIntoView()
         })
     }
     render() {
@@ -42,18 +42,21 @@ class MessageList extends Component {
                         messageList.map((item, index) => {
                             return (
                                 <li key={index} className={item.myMsg ? 'dialogue right' : 'dialogue'}>
-                                    <div className='avatar'>
-                                        <p> {item.username}</p>
-                                        <img src={item.avatar} />
-                                    </div>
-                                    <div className='text'>
-                                        <p>{item.content}</p>
+                                    <div className='dialogue-main'>
+                                        <div className='avatar'>
+                                            <img src={item.avatar} />
+                                        </div>
+                                        <div className='text'>
+                                            <p> {item.username}</p>
+                                            <p>{item.content}</p>
+                                        </div>
                                     </div>
                                 </li>
                             )
                         })
                     }
                 </ul>
+                <div id="msg_end" style={{ overflow: 'hidden' }}></div>
             </div>
         )
     }
