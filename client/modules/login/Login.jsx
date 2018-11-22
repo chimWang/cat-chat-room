@@ -62,11 +62,11 @@ class Login extends Component {
                     <header>登录</header>
                     <div className="content" style={{ width: '80%' }}>
                         <div className="login-info">
-                            <Input placeholder="输入名称" label="名称：" ref={i => this.username = i} />
+                            <Input placeholder="输入名称" label="名称：" ref={i => this.username = i}/>
                         </div>
                         <div className="avatar">
                             <p>选择头像：</p>
-                            <div>
+                            <div className="avatar-list">
                                 {avatar.map((item, index) => {
                                     return (
                                         <img src={item.imgUrl}

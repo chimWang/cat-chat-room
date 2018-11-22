@@ -8,7 +8,6 @@ class Input extends Component {
         this.state = {
             value: ''
         }
-
     }
     getValue() {
         return this.state.value.trim();

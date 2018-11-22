@@ -24,7 +24,7 @@ class ChatPanel extends Component {
 
     componentDidMount() {
         document.addEventListener('keydown', (e) => this.onEnter(e))
-        
+
     }
     clickBtn() {
         const { userInfo } = this.props

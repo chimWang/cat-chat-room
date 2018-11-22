@@ -12,7 +12,6 @@
 .login{
     background: #fff;
     width: 30vw;
-    height: 40vh;
     border-radius: 5px;
     .center();
 
@@ -24,11 +23,18 @@
     }
     .content{
         padding: 20px 0;
-        height: calc(100% - 82px);
         display: flex;
         flex-direction: column;
         justify-content: space-around;
         margin: 0 auto;
+
+
+        .login-info{
+            width: 100%;
+            input{
+                width: 12vw;
+            }
+        }
         .avatar{
             div{
                 display: flex;
@@ -39,12 +45,27 @@
                 height: 50px;
                 padding: 5px;
             }
+            .avatar-list{
+                display: flex;
+                flex-wrap: wrap;
+            }
         }
     
         .loginBtn{
+            margin-top: 10px;
             display: flex;
             justify-content: flex-end;
         }
     }
     
+}
+
+
+@media (max-width: 420px) {
+    .login{
+        width: 80vw;
+        input{
+            width: 40vw !important;
+        }
+    }
 }
