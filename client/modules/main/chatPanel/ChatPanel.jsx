@@ -5,7 +5,7 @@ import MessageList from './chat/MessageList'
 
 import IO from 'socket.io-client';
 const socket = new IO("http://localhost:3000");
-
+// const socket = new IO("http://47.100.112.48:3000");
 socket.on('connect', function () {
     console.log("与服务器连接");
 });
@@ -21,8 +21,10 @@ socket.on('disconnect', function () {
 
 
 class ChatPanel extends Component {
+
     componentDidMount() {
         document.addEventListener('keydown', (e) => this.onEnter(e))
+        
     }
     clickBtn() {
         const { userInfo } = this.props
@@ -62,7 +64,7 @@ class ChatPanel extends Component {
                     <MessageList ioUserInfo={userInfo} />
                 </div>
                 <footer>
-                    <Input placeholder="来吐槽一下吧~" ref={i => this.message = i}/>
+                    <Input placeholder="来吐槽一下吧~" ref={i => this.message = i} />
                     <button onClick={() => this.clickBtn()}>发送</button>
                 </footer>
             </div>

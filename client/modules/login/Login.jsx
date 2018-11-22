@@ -26,7 +26,7 @@ class Login extends Component {
                 }
             ],
             nowIndex: 0,
-            chooseAvatar: 1
+            chooseAvatar: './avatar1.svg'
         }
     }
 
@@ -60,7 +60,7 @@ class Login extends Component {
                 <div className="mask"></div>
                 <div className='login'>
                     <header>登录</header>
-                    <div className="center" style={{ width: '80%' }}>
+                    <div className="content" style={{ width: '80%' }}>
                         <div className="login-info">
                             <Input placeholder="输入名称" label="名称：" ref={i => this.username = i} />
                         </div>

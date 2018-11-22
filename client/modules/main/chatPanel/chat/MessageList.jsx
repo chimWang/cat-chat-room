@@ -2,18 +2,57 @@ import React, { Component } from 'react';
 import './MessageList.less'
 import IO from 'socket.io-client'
 const socket = new IO("http://localhost:3000")
+// const socket = new IO("http://47.100.112.48:3000");
 
+const storage = window.localStorage;
+if (!storage.messageList) {
+    storage.setItem('messageList', JSON.stringify([]))
+}
 class MessageList extends Component {
     constructor(props) {
         super(props)
+
         this.state = {
-            messageList: [],
+            messageList: JSON.parse(storage.messageList),
+            msgInfo: ''
         }
+        const { ioUserInfo } = props
+        this.state.messageList.forEach(item => {
+            if (item.userId === ioUserInfo.userId) {
+                item.myMsg = true
+            } else {
+                item.myMsg = false
+            }
+        })
     }
+
 
     componentWillReceiveProps(props) {
         const { messageList } = this.state
         const { ioUserInfo } = props
+
+        socket.on('getLogin', (info) => {
+            if (info.userId === ioUserInfo.userId) {
+                this.setState({
+                    msgInfo: '你进入了聊天室'
+                })
+                setTimeout(() => {
+                    this.setState({
+                        msgInfo: ''
+                    })
+                }, 4000)
+            } else {
+                this.setState({
+                    msgInfo: `${info.username}进入了聊天室`
+                })
+                setTimeout(() => {
+                    this.setState({
+                        msgInfo: ''
+                    })
+                }, 4000)
+            }
+        })
+
         socket.on('getMessage', (userInfo, message) => {
             let messageInfo = {}
             messageInfo.content = message
@@ -26,17 +65,20 @@ class MessageList extends Component {
                     item.myMsg = true
                 }
             })
+            storage.messageList = JSON.stringify(messageList)
             this.setState({
                 messageList
             })
             document.querySelector('#msg_end').scrollIntoView()
         })
     }
+
     render() {
-        const { messageList, nowIndex } = this.state
+        const { messageList, msgInfo } = this.state
 
         return (
-            <div>
+            <div style={{ position: 'relative' }}>
+                {msgInfo !== '' ? <p className='msgInfo'>{msgInfo}</p> : null}
                 <ul>
                     {
                         messageList.map((item, index) => {
