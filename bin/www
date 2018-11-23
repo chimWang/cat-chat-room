@@ -29,20 +29,16 @@ io.on('connection', function (socket) {
     }else{
       cb(400)
     }
-    console.log(userInfo)
-    console.log(msg)
     // socket.broadcast.emit('getMessage', userInfo, msg) //发送给除自己以外订阅了getMessage的人
     io.sockets.emit('getMessage', userInfo, msg); //发送给所有人
   })
-  socket.on('login', function (userInfo) {
-    console.log(userInfo)
+  socket.on('login', function (userInfo,cb) {
     io.sockets.emit('getLogin', userInfo); 
   })
 })
 /**
  * Listen on provided port, on all network interfaces.
  */
-
 
 server.listen(port, () => {
   console.log(`server on port:${port}`)

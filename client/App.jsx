@@ -3,22 +3,32 @@ import Main from './modules/main/Main'
 import Login from './modules/login/Login'
 import './theme/index.less'
 import './App.less'
-import IO from 'socket.io-client'
+import socket from '@/socket';
+
 const storage = window.localStorage;
-const socket = new IO("http://localhost:3000")
-// const socket = new IO("http://47.100.112.48:3000");
 
 class App extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            userInfo:{},
-            loginInfo: true
+        // this.state = {
+        //     userInfo:  {},
+        //     loginInfo: true
+        // }
+        if (storage['userInfo']) {
+            this.state = {
+                userInfo:  JSON.parse(storage['userInfo']),
+                loginInfo: false
+            }
+        }else{
+            this.state = {
+                userInfo:  {},
+                loginInfo: true
+            }
         }
+
     }
 
     componentDidMount() {
-        const storage = window.localStorage;
         // storage.removeItem('messageList')
         // storage.removeItem('userInfo')
         if (!storage) {

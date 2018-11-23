@@ -2,10 +2,8 @@ import React, { Component } from 'react'
 import './ChatPanel.less'
 import Input from '@/components/Input'
 import MessageList from './chat/MessageList'
+import socket from '@/socket';
 
-import IO from 'socket.io-client';
-const socket = new IO("http://localhost:3000");
-// const socket = new IO("http://47.100.112.48:3000");
 socket.on('connect', function () {
     console.log("与服务器连接");
 });
@@ -44,10 +42,10 @@ class ChatPanel extends Component {
         if (message) {
             socket.emit('sendMessage', userInfo, message, (code) => {
                 if (code === 200) {
-                    console.log('成功')
+                    console.log('发送成功')
                     this.message.clearValue()
                 } else {
-                    console.log('失败')
+                    console.log('发送失败')
                 }
             })
         } else {

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import './MessageList.less'
-import IO from 'socket.io-client'
-const socket = new IO("http://localhost:3000")
-// const socket = new IO("http://47.100.112.48:3000");
+import socket from '@/socket';
 
 const storage = window.localStorage;
 if (!storage.messageList) {
