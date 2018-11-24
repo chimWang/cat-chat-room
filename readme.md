@@ -10,3 +10,6 @@ cat-chat-room是一款猫的主题的web聊天应用，使用react，node.js和s
 
 运行画面
 ===
+![](https://github.com/chimWang/cat-chat-room/blob/master/screenshots/screenshot1.png)
+
+![](https://github.com/chimWang/cat-chat-room/blob/master/screenshots/screenshot2.png)
